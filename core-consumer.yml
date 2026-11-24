@@ -1,0 +1,24 @@
+# Manifest del consumidor. Contrato e inventario a la vez (ARCHITECTURE.md §2.1).
+week: 25
+name: key-gate
+core_version: 1.5.0
+
+reused_modules:
+  - llm-client
+  - schema-validate
+  - secure-base
+  - test-kit
+  - cache-ratelimit
+  - web-api-base
+  - auth-base
+
+new_surface:
+  - "gateway con acceso por clave: /llm exige una clave con permiso llm:complete y cada intento queda en el registro"
+  - "seed de auth-base (C14, sem. 25): clave de API con permisos exactos, huella en vez de secreto y falla cerrado"
+  - "ritmo por cliente: un token bucket por cliente que rechaza con 429 en lugar de esperar"
+  - "administración de claves y registro de accesos en disco; digest LLM validado que solo cita claves y clientes del registro"
+
+estimated_new_surface: 25
+
+# Presupuesto máximo de evals en USD por semana (ARCHITECTURE.md §8.1).
+eval_budget_usd: 2.0
